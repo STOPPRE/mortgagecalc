@@ -6,6 +6,7 @@ A comprehensive mortgage affordability calculator built with Next.js, Node.js, a
 
 - **Real-time Calculations**: Performs complex mortgage affordability calculations using a Node.js backend
 - **Responsive Design**: Built with Tailwind CSS for a beautiful, mobile-friendly interface
+- **Data Visualization**: Includes a dynamic pie chart to visualize the monthly payment breakdown
 - **Advanced Settings**: Customize parameters like interest rates, property tax rates, and more in an intuitive two-column layout
 - **Detailed Results**: View comprehensive breakdown of purchase details, monthly payments, and financial ratios
 

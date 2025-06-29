@@ -8,6 +8,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator"
 import { formatNumber, parseNumber } from "@/lib/utils"
 import { cn } from "@/lib/utils"
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface CalculationResult {
   purchasePrice: number;
@@ -78,8 +82,46 @@ export default function MortgageCalculator() {
     }
   }
 
+  const chartData = {
+    labels: ['Principal & Interest', 'Property Tax', 'Homeowners Insurance'],
+    datasets: [
+      {
+        data: [
+          result?.principalAndInterest ?? 0,
+          result?.propertyTax ?? 0,
+          result?.homeownersInsurance ?? 0,
+        ],
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.8)',
+          'rgba(255, 206, 86, 0.8)',
+          'rgba(255, 99, 132, 0.8)',
+        ],
+        borderColor: [
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(255, 99, 132, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+      },
+      title: {
+        display: true,
+        text: 'Monthly Payment Breakdown',
+      },
+    },
+  };
+
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
         <CardTitle>Mortgage Affordability Calculator</CardTitle>
         <CardDescription>Calculate your projected home purchase price based on your financial information.</CardDescription>
@@ -288,48 +330,57 @@ export default function MortgageCalculator() {
               <CardTitle>Affordability Results</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Left side: Original results */}
                 <div>
-                  <h4 className="font-semibold text-lg mb-2">Purchase Details</h4>
-                  <div className="space-y-1">
-                    <p className="flex justify-between">
-                      <span className="text-muted-foreground">Estimated Purchase Price:</span>
-                      <span className="font-medium">${result.purchasePrice.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span className="text-muted-foreground">Available Down Payment:</span>
-                      <span className="font-medium">${result.availableDownPayment.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span className="text-muted-foreground">Loan Amount:</span>
-                      <span className="font-medium">${result.loanAmount.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
-                    </p>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-lg mb-2">Purchase Details</h4>
+                      <div className="space-y-1">
+                        <p className="flex justify-between">
+                          <span className="text-muted-foreground">Estimated Purchase Price:</span>
+                          <span className="font-medium">${result.purchasePrice.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span className="text-muted-foreground">Available Down Payment:</span>
+                          <span className="font-medium">${result.availableDownPayment.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span className="text-muted-foreground">Loan Amount:</span>
+                          <span className="font-medium">${result.loanAmount.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-2">Monthly Payment</h4>
+                      <div className="space-y-1">
+                        <p className="flex justify-between">
+                          <span className="text-muted-foreground">Total Monthly Payment:</span>
+                          <span className="font-medium">${result.monthlyPayment.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span className="text-muted-foreground">Principal and Interest:</span>
+                          <span className="font-medium">${result.principalAndInterest.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span className="text-muted-foreground">Property Tax:</span>
+                          <span className="font-medium">${result.propertyTax.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span className="text-muted-foreground">Homeowners Insurance:</span>
+                          <span className="font-medium">${result.homeownersInsurance.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-lg mb-2">Monthly Payment</h4>
-                  <div className="space-y-1">
-                    <p className="flex justify-between">
-                      <span className="text-muted-foreground">Total Monthly Payment:</span>
-                      <span className="font-medium">${result.monthlyPayment.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span className="text-muted-foreground">Principal and Interest:</span>
-                      <span className="font-medium">${result.principalAndInterest.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span className="text-muted-foreground">Property Tax:</span>
-                      <span className="font-medium">${result.propertyTax.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span className="text-muted-foreground">Homeowners Insurance:</span>
-                      <span className="font-medium">${result.homeownersInsurance.toLocaleString('en-US', {maximumFractionDigits:2})}</span>
-                    </p>
-                  </div>
+                {/* Right side: Pie chart */}
+                <div className="relative h-64 md:h-auto">
+                  <Doughnut data={chartData} options={chartOptions} />
                 </div>
               </div>
-              <Separator className="my-4" />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Separator className="my-6" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <h4 className="font-semibold text-lg mb-2">Financial Ratios</h4>
                   <div className="space-y-1">

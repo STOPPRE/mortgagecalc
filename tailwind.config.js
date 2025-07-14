@@ -19,12 +19,14 @@ module.exports = {
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
+        ring: "rgba(37, 99, 235, .4)", // brand ring focus
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#2563eb",
           foreground: "hsl(var(--primary-foreground))",
+          light: '#93c5fd',
+          dark:  '#1e40af',
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -39,9 +41,16 @@ module.exports = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
+          DEFAULT: "#f97316",
           foreground: "hsl(var(--accent-foreground))",
         },
+        success:  '#22c55e',
+        danger:   '#ef4444',
+        text:         '#1f2937',
+        textLight:    '#4b5563',
+        surface:      '#ffffff',
+        surfaceDark:  '#111827',
+        glass: 'rgba(255,255,255,.1)',
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -50,6 +59,10 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+        heading: ['Inter', 'ui-sans-serif']
       },
       borderRadius: {
         lg: "var(--radius)",

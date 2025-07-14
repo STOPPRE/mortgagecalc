@@ -121,7 +121,7 @@ export default function MortgageCalculator() {
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="w-full max-w-4xl mx-auto md:p-6 p-4">
       <CardHeader>
         <CardTitle>Mortgage Affordability Calculator</CardTitle>
         <CardDescription>Calculate your projected home purchase price based on your financial information.</CardDescription>
@@ -330,7 +330,7 @@ export default function MortgageCalculator() {
               <CardTitle>Affordability Results</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left side: Original results */}
                 <div>
                   <div className="space-y-4">
@@ -375,7 +375,7 @@ export default function MortgageCalculator() {
                   </div>
                 </div>
                 {/* Right side: Pie chart */}
-                <div className="relative h-64 md:h-auto">
+                <div className="relative h-64 md:h-80 lg:h-auto">
                   <Doughnut data={chartData} options={chartOptions} />
                 </div>
               </div>

@@ -15,6 +15,10 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+      heading: ['Inter', 'ui-sans-serif']
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -59,10 +63,6 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
-      fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
-        heading: ['Inter', 'ui-sans-serif']
       },
       borderRadius: {
         lg: "var(--radius)",

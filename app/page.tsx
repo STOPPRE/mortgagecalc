@@ -1,6 +1,6 @@
 import MortgageCalculator from '@/components/MortgageCalculator'
  
-// Triggering deployment with a comment
+// Triggering deployment after setting cleanup policy
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-24">

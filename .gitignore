@@ -1,8 +1,40 @@
-# Local documentation
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Local Documentation / Markdown
 designsystem.md
 career-port-design-system.md
 "Step by Step.md"
+`Step by Step.md`
 
-# System files
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+
+# Misc
+*.pem
+
+# Vercel
+.vercel
+
+# Turbo
+.turbo
+
+# System / OS-specific
 .DS_Store
 ._*
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

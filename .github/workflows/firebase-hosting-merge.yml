@@ -15,8 +15,8 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MTG_AFFORD_CALC_API_SERVERLESS }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MORTG_CALC_AFFORD }}'
           channelId: live
-          projectId: mtg-afford-calc-api-serverless
+          projectId: mortg-calc-afford
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
